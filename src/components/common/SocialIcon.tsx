@@ -33,17 +33,15 @@ export default function SocialIcon() {
         {socialIcons &&
           socialIcons.map(({ name, icon, link }) => {
             return (
-              <>
-                <li key={name} title={name} className="social_icons_list_item">
-                  <Link
-                    href={link}
-                    className="social_icons_list_item_link"
-                    target="_blank"
-                  >
-                    {icon}
-                  </Link>
-                </li>
-              </>
+              <li key={name} title={name} className="social_icons_list_item">
+                <Link
+                  href={link}
+                  className="social_icons_list_item_link"
+                  target="_blank"
+                >
+                  {icon}
+                </Link>
+              </li>
             );
           })}
       </ul>

@@ -7,7 +7,9 @@ import Navbar from "@/sections/header/Navbar";
 import Hero from "@/sections/hero/Hero";
 import React from "react";
 import Experience from "@/sections/experience/Experience";
+import Education from "@/sections/education/Education";
 import Projects from "@/sections/projects/Projects";
+import Contact from "@/sections/contact/Contact";
 
 export default function Home() {
   return (
@@ -20,7 +22,9 @@ export default function Home() {
         <About />
         <Skill />
         <Experience />
+        <Education />
         <Projects />
+        <Contact />
       </main>
     </div>
   );
