@@ -1,4 +1,5 @@
 :root {
+    // Color palette
     --navy-shadow: rgba(2, 12, 27, 0.7);
     --background-color: #0a192f;
     --lightest-navy: #233554;
@@ -8,19 +9,66 @@
     --light-slate: #ccd6f6;
     --lightest-slate: #a8b2d1;
     --theme-color: #9d00ff;
-
-    --: 13px;
-    --tsm1: 14px;
-    --tsm2: 15px;
+    --theme-color-rgb: 157, 0, 255;
+    --white: #ffffff;
+    --black: #000000;
+    
+    // Typography
+    --tsm: 12px;
+    --tsm1: 13px;
+    --tsm2: 14px;
+    --tsmall: 14px;
     --tbase: 16px;
     --tlarge: 18px;
-    --tlarge2: 22px;
-    --txlarge: 25px;
-    --tx2large: 32px;
+    --tlarge2: 20px;
+    --txlarge: 24px;
+    --tx2large: 28px;
+    --tx3large: 32px;
     --tgiant: clamp(40px, 8vw, 80px);
-
+    
+    // Spacing
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+    --spacing-3xl: 6rem;
+    
+    // Border radius
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    
+    // Shadows
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    
+    // Transitions
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+    
+    // Breakpoints
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large-desktop: 1200px;
+    
+    // Z-index
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    
     @media screen and (max-width: 480px) {
-        --tx2large: 25px;
-        // --tgiant: 40px;
+        --tx2large: 24px;
+        --tgiant: clamp(2.5rem, 8vw, 3.5rem);
     }
 }

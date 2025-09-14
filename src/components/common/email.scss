@@ -36,4 +36,13 @@
         margin: 0px auto;
 
     }
+    @media screen and (max-width: 960px) {
+        right: 2rem;
+    }
+    @media screen and (max-width: 768px) {
+        right: 1rem;
+    }
+    @media screen and (max-width: 480px) {
+        right: 0;
+    }
 }

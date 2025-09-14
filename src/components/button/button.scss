@@ -1,17 +1,108 @@
 .btn {
-    color: var(--theme-color);
-    padding: 0.75rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    background-color: transparent;
-    border: 1px solid var(--theme-color);
-    border-radius: 4px;
-    font-size: var(--tsm);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--fira-code);
+    font-weight: 500;
     outline: none;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
-
-    &:hover,
-    &:focus {
-        background-color: var(--lightest-navy);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    
+    // Size variants
+    &--small {
+        padding: 0.5rem 1rem;
+        font-size: var(--tsm2);
+        min-height: 2.5rem;
+    }
+    
+    &--medium {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--tbase);
+        min-height: 3rem;
+    }
+    
+    &--large {
+        padding: 1rem 2rem;
+        font-size: var(--tlarge);
+        min-height: 3.5rem;
+    }
+    
+    // Primary variant
+    &--primary {
+        background-color: var(--theme-color);
+        color: var(--background-color);
+        border-color: var(--theme-color);
+        
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: var(--theme-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(var(--theme-color-rgb), 0.3);
+        }
+    }
+    
+    // Secondary variant
+    &--secondary {
+        background-color: transparent;
+        color: var(--theme-color);
+        border-color: var(--theme-color);
+        
+        &:hover,
+        &:focus {
+            background-color: var(--theme-color);
+            color: var(--background-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(var(--theme-color-rgb), 0.3);
+        }
+    }
+    
+    // Outline variant
+    &--outline {
+        background-color: transparent;
+        color: var(--light-slate);
+        border-color: var(--slate);
+        
+        &:hover,
+        &:focus {
+            background-color: var(--lightest-navy);
+            color: var(--theme-color);
+            border-color: var(--theme-color);
+            transform: translateY(-2px);
+        }
+    }
+    
+    // Disabled state
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    // Focus styles for accessibility
+    &:focus-visible {
+        outline: 2px solid var(--theme-color);
+        outline-offset: 2px;
+    }
+    
+    // Mobile optimizations
+    @media screen and (max-width: 768px) {
+        &--large {
+            padding: 0.875rem 1.5rem;
+            font-size: var(--tbase);
+            min-height: 3rem;
+        }
+        
+        &--medium {
+            padding: 0.625rem 1.25rem;
+            font-size: var(--tsm2);
+            min-height: 2.75rem;
+        }
     }
 }

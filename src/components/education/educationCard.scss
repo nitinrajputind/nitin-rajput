@@ -1,4 +1,4 @@
-.experience_card {
+.education_card {
     position: relative;
     display: flex;
     margin-left: 60px;
@@ -103,20 +103,69 @@
         border: 1px solid var(--lightest-navy);
         transition: var(--transition-normal);
 
-        .experience_card_content:hover & {
+        .education_card_content:hover & {
             border-color: var(--theme-color);
             transform: scale(1.05);
         }
 
-        &_image {
-            border-radius: var(--border-radius-sm);
-            object-fit: contain;
+        &_svg {
+            width: 24px;
+            height: 24px;
+            color: var(--theme-color);
         }
     }
 
     &_header_info {
         flex: 1;
         min-width: 0;
+    }
+
+    &_degree {
+        color: var(--lightest-slate);
+        font-size: var(--txlarge);
+        font-weight: 600;
+        font-family: var(--raleway);
+        margin: 0 0 var(--spacing-xs) 0;
+        line-height: 1.2;
+    }
+
+    &_field {
+        color: var(--theme-color);
+        font-size: var(--tlarge);
+        font-weight: 500;
+        font-family: var(--fira-code);
+        margin: 0 0 var(--spacing-xs) 0;
+        line-height: 1.3;
+    }
+
+    &_institution {
+        color: var(--slate);
+        font-size: var(--tbase);
+        font-family: var(--raleway);
+        margin: 0 0 var(--spacing-md) 0;
+        font-weight: 500;
+    }
+
+    &_meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+        margin-bottom: 0;
+
+        &_item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--slate);
+            font-size: var(--tsm2);
+            font-family: var(--fira-code);
+
+            svg {
+                width: 14px;
+                height: 14px;
+                color: var(--theme-color);
+            }
+        }
     }
 
     &_toggle {
@@ -135,32 +184,6 @@
         }
     }
 
-    &_role {
-        color: var(--lightest-slate);
-        font-size: var(--txlarge);
-        font-weight: 600;
-        font-family: var(--raleway);
-        margin: 0 0 var(--spacing-xs) 0;
-        line-height: 1.2;
-    }
-
-    &_company {
-        color: var(--theme-color);
-        font-size: var(--tlarge);
-        font-weight: 500;
-        font-family: var(--fira-code);
-        margin: 0 0 var(--spacing-xs) 0;
-        line-height: 1.3;
-    }
-
-    &_duration {
-        color: var(--slate);
-        font-size: var(--tbase);
-        font-family: var(--raleway);
-        margin: 0;
-        font-weight: 400;
-    }
-
     &_body {
         margin-top: var(--spacing-lg);
         padding: 0 var(--spacing-sm) var(--spacing-lg) var(--spacing-sm);
@@ -176,85 +199,7 @@
         font-weight: 400;
     }
 
-    &_metrics {
-        margin-bottom: var(--spacing-lg);
-        padding: var(--spacing-lg);
-        background: rgba(var(--theme-color-rgb), 0.05);
-        border: 1px solid rgba(var(--theme-color-rgb), 0.1);
-        border-radius: var(--border-radius-lg);
-    }
-
-    &_team {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-md);
-
-        &_label {
-            color: var(--lightest-slate);
-            font-size: var(--tbase);
-            font-weight: 600;
-            font-family: var(--raleway);
-        }
-
-        &_value {
-            color: var(--theme-color);
-            font-size: var(--tbase);
-            font-weight: 500;
-            font-family: var(--fira-code);
-        }
-    }
-
-    &_stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-lg);
-
-        @media screen and (max-width: 768px) {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-md);
-        }
-
-        @media screen and (max-width: 480px) {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    &_stat {
-        text-align: center;
-        padding: var(--spacing-md);
-        background: rgba(var(--theme-color-rgb), 0.08);
-        border: 1px solid rgba(var(--theme-color-rgb), 0.15);
-        border-radius: var(--border-radius-md);
-        transition: var(--transition-normal);
-
-        &:hover {
-            background: rgba(var(--theme-color-rgb), 0.12);
-            transform: translateY(-2px);
-        }
-
-        &_value {
-            display: block;
-            color: var(--theme-color);
-            font-family: var(--fira-code);
-            font-size: var(--tlarge);
-            font-weight: 700;
-            margin-bottom: var(--spacing-xs);
-        }
-
-        &_label {
-            color: var(--lightest-slate);
-            font-size: var(--tsmall);
-            font-weight: 500;
-            font-family: var(--raleway);
-        }
-
-        @media screen and (max-width: 768px) {
-            padding: var(--spacing-sm);
-        }
-    }
-
-    &_responsibilities {
+    &_achievements {
         margin-bottom: var(--spacing-lg);
 
         &_title {
@@ -291,7 +236,9 @@
         }
     }
 
-    &_skills {
+    &_courses {
+        margin-bottom: var(--spacing-lg);
+
         &_title {
             color: var(--lightest-slate);
             font-size: var(--tbase);
@@ -307,7 +254,7 @@
         }
     }
 
-    &_skill_tag {
+    &_course_tag {
         background-color: var(--lightest-navy);
         color: var(--theme-color);
         padding: var(--spacing-xs) var(--spacing-sm);
@@ -327,7 +274,7 @@
 
     // Last card doesn't need timeline line
     &:last-child {
-        .experience_card_timeline_line {
+        .education_card_timeline_line {
             display: none;
         }
     }
@@ -378,8 +325,10 @@
             box-shadow: 0 4px 15px rgba(var(--theme-color-rgb), 0.3);
             margin-bottom: var(--spacing-sm);
 
-            &_image {
-                border-radius: var(--border-radius-md);
+            &_svg {
+                width: 28px;
+                height: 28px;
+                color: var(--theme-color);
             }
         }
 
@@ -410,24 +359,45 @@
             }
         }
 
-        &_role {
+        &_degree {
             font-size: var(--tlarge2);
             font-weight: 700;
             margin-bottom: var(--spacing-xs);
             color: var(--lightest-slate);
         }
 
-        &_company {
+        &_field {
             font-size: var(--tlarge);
             font-weight: 600;
             margin-bottom: var(--spacing-xs);
             color: var(--theme-color);
         }
 
-        &_duration {
+        &_institution {
             font-size: var(--tbase);
             color: var(--slate);
             font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        &_meta {
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+
+            &_item {
+                font-size: var(--tsm);
+                background-color: var(--lightest-navy);
+                padding: var(--spacing-xs) var(--spacing-sm);
+                border-radius: var(--border-radius-sm);
+                border: 1px solid var(--theme-color);
+
+                svg {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
         }
 
         &_body {
@@ -443,7 +413,7 @@
             text-align: left;
         }
 
-        &_responsibilities {
+        &_achievements {
             margin-bottom: var(--spacing-md);
 
             &_title {
@@ -464,7 +434,7 @@
             }
         }
 
-        &_skills {
+        &_courses {
             &_title {
                 font-size: var(--tbase);
                 color: var(--theme-color);
@@ -477,7 +447,7 @@
             }
         }
 
-        &_skill_tag {
+        &_course_tag {
             font-size: var(--tsm2);
             padding: var(--spacing-xs) var(--spacing-sm);
             background: linear-gradient(135deg, var(--lightest-navy), var(--light-navy));
@@ -504,17 +474,22 @@
         &_icon {
             width: 60px;
             height: 60px;
+
+            &_svg {
+                width: 24px;
+                height: 24px;
+            }
         }
 
-        &_role {
+        &_degree {
             font-size: var(--tlarge);
         }
 
-        &_company {
+        &_field {
             font-size: var(--tbase);
         }
 
-        &_duration {
+        &_institution {
             font-size: var(--tsm);
         }
 
@@ -522,14 +497,26 @@
             font-size: var(--tsm);
         }
 
-        &_responsibilities {
+        &_meta {
+            &_item {
+                font-size: var(--tsm2);
+                padding: 4px 8px;
+
+                svg {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+
+        &_achievements {
             &_item {
                 font-size: var(--tsm2);
                 padding-left: var(--spacing-sm);
             }
         }
 
-        &_skill_tag {
+        &_course_tag {
             font-size: var(--tsm3);
             padding: 4px 8px;
         }
