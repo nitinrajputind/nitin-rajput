@@ -60,7 +60,7 @@ export default function Education() {
                   institution={item.institution}
                   duration={item.duration}
                   location={item.location}
-                  gpa={item.gpa}
+                  cgpa={item.cgpa}
                   description={item.description}
                   achievements={item.achievements}
                   relevantCourses={item.relevantCourses}

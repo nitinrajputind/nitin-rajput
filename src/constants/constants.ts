@@ -1,4 +1,4 @@
-import { eshopImage, inspironLabs } from "@/assets";
+import { eshopImage, inspironLabs, prepbytes } from "@/assets";
 
 export const sectionLink = [
   {
@@ -36,14 +36,24 @@ export const technoolgy = [
     name: "Frontend Skill",
     skill: [
       {
-        name: "React JS",
-        icon: "ic_react",
+        name: "HTML",
+        icon: "ic_html",
         proficiency: 95,
       },
       {
-        name: "Angular",
-        icon: "ic_angular",
-        proficiency: 75,
+        name: "CSS",
+        icon: "ic_css",
+        proficiency: 93,
+      },
+      {
+        name: "JS",
+        icon: "ic_js",
+        proficiency: 92,
+      },
+      {
+        name: "React JS",
+        icon: "ic_react",
+        proficiency: 95,
       },
       {
         name: "Next JS",
@@ -61,24 +71,9 @@ export const technoolgy = [
         proficiency: 80,
       },
       {
-        name: "HTML",
-        icon: "ic_html",
-        proficiency: 95,
-      },
-      {
-        name: "CSS",
-        icon: "ic_css",
-        proficiency: 93,
-      },
-      {
         name: "SCSS",
         icon: "ic_scss",
         proficiency: 90,
-      },
-      {
-        name: "JS",
-        icon: "ic_js",
-        proficiency: 92,
       },
       {
         name: "tailwind",
@@ -90,6 +85,22 @@ export const technoolgy = [
         icon: "ic_flutter",
         proficiency: 78,
       },
+      {
+        name: "Storybook",
+        icon: "ic_storybook",
+        proficiency: 78,
+      },
+      {
+        name: "React-Query",
+        icon: "ic_React-Query",
+        proficiency: 80,
+      },
+      {
+        name: "React-Router V7",
+        icon: "ic_react-router",
+        proficiency: 80,
+      },
+      
     ],
   },
   {
@@ -215,17 +226,17 @@ export const technoolgy = [
 
 export const experience = [
   {
-    role: "Senior Software Engineer",
+    role: "Software Engineer",
     company: "InspironLabs Software System Pvt. Ltd.",
-    duration: "March 2024 - Present",
+    duration: "November 2023 - Present",
     description:
       "Leading the development of scalable web applications using modern technologies. Collaborating with cross-functional teams to deliver high-quality software solutions that serve thousands of users.",
     image: inspironLabs,
-    skills: "Next.js, Angular, TypeScript, Jest, Material-UI, Node.js, MongoDB",
+    skills: "React.Js, Next.Js, TypeScript, Jest, Material-UI, Redux, Mobx, React-Query, React-Router V7, Storybook, Redux-Toolkit, RTK-Query, Webpack, Babel, ESLint, Prettier, Jira, Git, Github, Gitlab, Bitbucket, Docker, AWS, CI/CD, Git, React-Profiler, light-house",
     teamSize: "8-12 developers",
     metrics: {
       users: "10K+",
-      performance: "40%",
+      performance: "90%",
       projects: "5+"
     },
     responsibilities: [
@@ -238,18 +249,18 @@ export const experience = [
     ]
   },
   {
-    role: "Full Stack Developer",
+    role: "Software Engineer Trainee",
     company: "Tech Solutions Inc.",
-    duration: "January 2022 - February 2024",
+    duration: "January 2023 - November 2023",
     description:
       "Developed and maintained full-stack web applications using React, Node.js, and MongoDB. Implemented responsive designs and optimized application performance.",
-    image: inspironLabs,
-    skills: "React, Node.js, MongoDB, Express.js, JavaScript, HTML5, CSS3",
-    teamSize: "5-8 developers",
+    image: prepbytes,
+    skills: "HTML5, CSS3,  JavaScript, React, Node.js, MongoDB, Express.js, Git, Github,",
+    teamSize: "3-5 developers",
     metrics: {
-      users: "5K+",
+      users: "1K+",
       performance: "60%",
-      projects: "8+"
+      projects: "5+"
     },
     responsibilities: [
       "Built responsive web applications using React and Node.js",
@@ -260,39 +271,16 @@ export const experience = [
       "Deployed applications using Docker and AWS cloud services"
     ]
   },
-  {
-    role: "Frontend Developer",
-    company: "Digital Innovations Ltd.",
-    duration: "June 2020 - December 2021",
-    description:
-      "Specialized in creating responsive and interactive user interfaces using React and modern CSS frameworks. Worked closely with UX/UI designers to implement pixel-perfect designs.",
-    image: inspironLabs,
-    skills: "React, JavaScript, HTML5, CSS3, SCSS, Bootstrap, Git",
-    teamSize: "3-5 developers",
-    metrics: {
-      users: "2K+",
-      performance: "30%",
-      projects: "12+"
-    },
-    responsibilities: [
-      "Developed responsive user interfaces using React and modern CSS frameworks",
-      "Created reusable component libraries improving development efficiency by 30%",
-      "Ensured cross-browser compatibility and mobile responsiveness",
-      "Collaborated with designers to implement pixel-perfect UI designs",
-      "Optimized frontend performance and user experience",
-      "Participated in agile development processes and sprint planning"
-    ]
-  },
 ];
 
 export const education = [
   {
-    degree: "Bachelor of Technology (B.Tech)",
-    field: "Computer Science and Engineering",
-    institution: "University of Technology",
-    duration: "2016 - 2020",
-    location: "Mumbai, India",
-    gpa: "8.5/10",
+    degree: "Bachelor of Computer Application",
+    field: "Computer Science",
+    institution: "Chaudhary Charan Singh University, Meerut",
+    duration: "2020 - 2023",
+    location: "Meerut, India",
+    cgpa: "7.5/10",
     description: "Specialized in software engineering, data structures, algorithms, and web development. Completed multiple projects in full-stack development and participated in coding competitions.",
     achievements: [
       "Graduated with First Class Honors",
@@ -303,30 +291,31 @@ export const education = [
       "Published research paper on 'Optimization of Database Queries'"
     ],
     relevantCourses: [
+      "Computer Fundamentals",
+      'Programming Language',
       "Data Structures and Algorithms",
       "Database Management Systems",
       "Web Development",
       "Software Engineering",
       "Computer Networks",
       "Operating Systems",
-      "Machine Learning",
       "Mobile Application Development"
     ]
   },
   {
     degree: "Higher Secondary Certificate (HSC)",
     field: "Science Stream",
-    institution: "St. Xavier's High School",
+    institution: "Nillgiri Public School, Noida",
     duration: "2014 - 2016",
-    location: "Mumbai, India",
-    gpa: "92%",
+    location: "Noida, India",
+    cgpa: "7/10",
     description: "Completed higher secondary education with focus on Mathematics, Physics, and Chemistry. Developed strong analytical and problem-solving skills.",
     achievements: [
-      "Scored 95% in Mathematics",
+      "Scored 65% in Mathematics",
       "Participated in Science Exhibition",
       "Member of Debate Society",
       "Won 2nd prize in State-level Math Olympiad",
-      "Completed Advanced Computer Course"
+      "Completed Advanced Computer Course",
     ],
     relevantCourses: [
       "Mathematics",

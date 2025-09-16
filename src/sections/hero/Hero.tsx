@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Button from "@/components/button/Button";
+import ParticleNetwork from "@/components/common/ParticleNetwork";
 import "./hero.scss";
 
 const roles = [
@@ -13,27 +14,13 @@ const roles = [
   "Web Developer"
 ];
 
-const techStack = [
-  { name: "React", icon: "⚛️", color: "#61DAFB" },
-  { name: "Next.js", icon: "▲", color: "#000000" },
-  { name: "Node.js", icon: "🟢", color: "#339933" },
-  { name: "JavaScript", icon: "🟨", color: "#F7DF1E" },
-  { name: "TypeScript", icon: "🔷", color: "#3178C6" },
-  { name: "Python", icon: "🐍", color: "#3776AB" },
-  { name: "MongoDB", icon: "🍃", color: "#47A248" },
-  { name: "Firebase", icon: "🔥", color: "#FFCA28" },
-  { name: "Git", icon: "📝", color: "#F05032" },
-  { name: "Docker", icon: "🐳", color: "#2496ED" },
-  { name: "AWS", icon: "☁️", color: "#FF9900" },
-  { name: "GraphQL", icon: "🔗", color: "#E10098" }
-];
+// right visual now uses a lightweight animated SVG globe (no heavy libs)
 
 export default function Hero() {
-  const [currentRole, setCurrentRole] = useState(0);
+  const [currentRole, setCurrentRole] = useState<number>(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [currentTechSet, setCurrentTechSet] = useState(0);
-  const [isRotating, setIsRotating] = useState(true);
+  
 
   useEffect(() => {
     const current = roles[currentRole];
@@ -55,29 +42,7 @@ export default function Hero() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentRole]);
 
-  // Auto-rotate tech stack
-  useEffect(() => {
-    if (!isRotating) return;
-    
-    const interval = setInterval(() => {
-      setCurrentTechSet((prev) => (prev + 1) % Math.ceil(techStack.length / 3));
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isRotating]);
-
-  const getCurrentTechSet = () => {
-    const start = currentTechSet * 3;
-    return techStack.slice(start, start + 3);
-  };
-
-  const handleTechClick = () => {
-    setCurrentTechSet((prev) => (prev + 1) % Math.ceil(techStack.length / 3));
-  };
-
-  const toggleRotation = () => {
-    setIsRotating(!isRotating);
-  };
+  // removed rotating tech tiles in favor of SVG globe
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -102,27 +67,7 @@ export default function Hero() {
     }
   };
 
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const rotateVariants = {
-    animate: {
-      rotate: 360,
-      transition: {
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear"
-      }
-    }
-  };
+  
 
   return (
     <section className="hero section" id="home">
@@ -170,7 +115,7 @@ export default function Hero() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1, duration: 0.8 }}
                 >
-                  5+
+                  3+
                 </motion.span>
                 <span className="hero_stat_label">Years Experience</span>
               </motion.div>
@@ -186,7 +131,7 @@ export default function Hero() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2, duration: 0.8 }}
                 >
-                  50+
+                  10+
                 </motion.span>
                 <span className="hero_stat_label">Projects Completed</span>
               </motion.div>
@@ -224,10 +169,10 @@ export default function Hero() {
                   ease: "easeInOut" 
                 }}
               />
-              <span className="hero_availability_text">Available for freelance work</span>
+              <span className="hero_availability_text">Available for Freelance work</span>
             </div>
             <div className="hero_location">
-              <span className="hero_location_text">📍 Mumbai, India (UTC+5:30)</span>
+              <span className="hero_location_text">📍 Bangalore, India (UTC+5:30)</span>
             </div>
           </motion.div>
           
@@ -252,82 +197,7 @@ export default function Hero() {
           animate="visible"
         >
           <div className="hero_animation_container">
-            {getCurrentTechSet().map((tech, index) => (
-              <motion.div 
-                key={`${tech.name}-${currentTechSet}`}
-                className={`hero_floating_element hero_element_${index + 1}`}
-                variants={floatingVariants}
-                animate={{
-                  ...floatingVariants.animate,
-                  opacity: 1, 
-                  scale: 1
-                }}
-                transition={{ 
-                  ...floatingVariants.animate.transition,
-                  delay: index * 0.5 
-                }}
-                onClick={handleTechClick}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                title={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-              >
-                <div 
-                  className="hero_tech_icon"
-                  style={{ color: tech.color }}
-                >
-                  {tech.icon}
-                </div>
-                <div className="hero_tech_name">{tech.name}</div>
-              </motion.div>
-            ))}
-            
-            <motion.div 
-              className="hero_rotating_ring"
-              variants={rotateVariants}
-              animate="animate"
-            >
-              <div className="hero_ring"></div>
-            </motion.div>
-            
-            <motion.div 
-              className="hero_center_circle"
-              variants={floatingVariants}
-              animate="animate"
-              onClick={toggleRotation}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              title={isRotating ? "Pause rotation" : "Start rotation"}
-            >
-              <div className="hero_center_content">
-                <span>N</span>
-                <div className="hero_rotation_indicator">
-                  {isRotating ? "⏸️" : "▶️"}
-                </div>
-              </div>
-            </motion.div>
-            
-            <div className="hero_tech_controls">
-              <motion.button 
-                className="hero_tech_button"
-                onClick={handleTechClick}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                title="Next tech stack"
-              >
-                🔄
-              </motion.button>
-              <div className="hero_tech_indicators">
-                {Array.from({ length: Math.ceil(techStack.length / 3) }).map((_, index) => (
-                  <div 
-                    key={index}
-                    className={`hero_tech_indicator ${index === currentTechSet ? 'active' : ''}`}
-                    onClick={() => setCurrentTechSet(index)}
-                  />
-                ))}
-              </div>
-            </div>
+            <ParticleNetwork className="hero_globe" />
           </div>
         </motion.div>
       </div>

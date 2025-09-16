@@ -9,7 +9,7 @@ interface EducationCardProps {
   institution: string;
   duration: string;
   location: string;
-  gpa: string;
+  cgpa: string;
   description: string;
   achievements: string[];
   relevantCourses: string[];
@@ -22,7 +22,7 @@ const EducationCard = ({
   institution,
   duration,
   location,
-  gpa,
+  cgpa,
   description,
   achievements,
   relevantCourses,
@@ -81,7 +81,7 @@ const EducationCard = ({
               </div>
               <div className="education_card_meta_item">
                 <FiAward className="education_card_meta_icon" />
-                <span>GPA: {gpa}</span>
+                <span>CGPA: {cgpa}</span>
               </div>
             </div>
           </div>
