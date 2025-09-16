@@ -9,8 +9,8 @@
     --slate: #c9d1d9;        /* primary text */
     --light-slate: #9aa7b2;  /* muted */
     --lightest-slate: #a6b3bf;/* labels */
-    --theme-color: #7c3aed;
-    --theme-color-rgb: 124, 58, 237;
+    --theme-color: #8b5cf6; /* vivid indigo for stronger glow */
+    --theme-color-rgb: 139, 92, 246;
     --white: #ffffff;
     --black: #000000;
     /* Navbar */
@@ -90,9 +90,9 @@
     --white: #000000;           /* inverted */
     --black: #ffffff;
 
-    /* Accent keeps same brand color but looks sharper on light */
-    --theme-color: #7a00cc;
-    --theme-color-rgb: 122, 0, 204;
+    /* Accent unified to vivid indigo for consistency */
+    --theme-color: #7c3aed;
+    --theme-color-rgb: 124, 58, 237;
 
     /* Navbar */
     --navbar-bg: rgba(255, 255, 255, 0.78);
