@@ -7,7 +7,6 @@ import clockImage from "./image/Clock.png";
 import dictionaryImage from "./image/Dictionary.png";
 import emailTemplateImage from "./image/EmailTemplate.png";
 import eshopImage from "./image/Eshop.png";
-import heroImage from "./image/hero.png";
 import multiFormImage from "./image/multiForm.png";
 import netflixImage from "./image/Netflix.png";
 import nitinBlogImage from "./image/NitinBlog.png";
@@ -19,6 +18,7 @@ import taskListImage from "./image/TaskList.png";
 import tempratureConverterImage from "./image/TempratureConverter.png";
 import ToDoUIImage from "./image/ToDoUI.png";
 import weatherImage from "./image/weather.png";
+import prepbytes from "./icons/prepbytes.png";
 
 export {
   inspironLabs,
@@ -30,11 +30,11 @@ export {
   dictionaryImage,
   emailTemplateImage,
   eshopImage,
-  heroImage,
   multiFormImage,
   netflixImage,
   nitinBlogImage,
   passwordGenratorImage,
   PortolioImage,
-  prepBytesImage
+  prepBytesImage,
+  prepbytes,
 };

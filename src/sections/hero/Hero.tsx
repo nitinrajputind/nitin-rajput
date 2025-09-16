@@ -115,7 +115,7 @@ export default function Hero() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1, duration: 0.8 }}
                 >
-                  5+
+                  3+
                 </motion.span>
                 <span className="hero_stat_label">Years Experience</span>
               </motion.div>
@@ -131,7 +131,7 @@ export default function Hero() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2, duration: 0.8 }}
                 >
-                  50+
+                  10+
                 </motion.span>
                 <span className="hero_stat_label">Projects Completed</span>
               </motion.div>
@@ -169,10 +169,10 @@ export default function Hero() {
                   ease: "easeInOut" 
                 }}
               />
-              <span className="hero_availability_text">Available for freelance work</span>
+              <span className="hero_availability_text">Available for Freelance work</span>
             </div>
             <div className="hero_location">
-              <span className="hero_location_text">📍 Mumbai, India (UTC+5:30)</span>
+              <span className="hero_location_text">📍 Bangalore, India (UTC+5:30)</span>
             </div>
           </motion.div>
           

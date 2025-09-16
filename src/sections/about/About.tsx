@@ -52,8 +52,8 @@ function About() {
         <div className="about_content">
           <motion.div className="about_text" variants={itemVariants}>
             <p className="about_text_paragraph">
-              Hello! My name is Nitin Rajput, and I&apos;m a passionate full-stack software engineer 
-              with over 5 years of experience building modern web applications. I specialize in the 
+              Hello! My name is Nitin Rajput, and I&apos;m a passionate Full-Stack Software Engineer 
+              with over 3+ years of experience building modern web applications. I specialize in the 
               MERN stack (MongoDB, Express.js, React, and Node.js) and have a strong foundation in 
               creating scalable, performant, and user-friendly digital solutions.
             </p>
