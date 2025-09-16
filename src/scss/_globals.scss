@@ -16,6 +16,17 @@ body{
     scroll-behavior: smooth;
 }
 
+/* Smooth theme transition */
+html[data-theme] body,
+html[data-theme] .section,
+html[data-theme] .card,
+html[data-theme] .navbar,
+html[data-theme] main,
+html[data-theme] .project,
+html[data-theme] .skills {
+    transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+}
+
 main{
     margin: 0 13rem;
     padding-top: 70px; // Account for fixed navbar

@@ -4,14 +4,14 @@
     left: 0;
     right: 0;
     z-index: var(--z-fixed);
-    background-color: rgba(10, 25, 47, 0.85);
+    background-color: var(--navbar-bg);
     backdrop-filter: blur(10px);
     transition: var(--transition-normal);
     border-bottom: 1px solid transparent;
 
     &--scrolled {
-        background-color: rgba(10, 25, 47, 0.95);
-        border-bottom-color: var(--lightest-navy);
+        background-color: var(--navbar-bg-scrolled);
+        border-bottom-color: var(--navbar-border);
     }
 
     &_wrapper {
@@ -224,4 +224,69 @@
         display: flex;
         justify-content: center;
     }
+}
+
+/* Floating theme toggle */
+.theme_fab {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--light-navy);
+    color: var(--lightest-slate);
+    border: 1px solid var(--navbar-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    transition: var(--transition-normal);
+    z-index: var(--z-popover);
+
+    &:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 14px 24px rgba(0,0,0,0.28);
+        background: var(--lightest-navy);
+    }
+}
+
+/* Ripple that expands from FAB to reveal new theme */
+.theme_ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 650ms ease, opacity 650ms ease;
+    z-index: var(--z-modal);
+    opacity: 0.28;
+}
+.theme_ripple--animate {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme_ripple { transition: none !important; opacity: 0 !important; }
+}
+
+/* Side wipe animation */
+.theme_wipe {
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: var(--z-modal);
+    pointer-events: none;
+    transform: translateX(100%);
+    opacity: 0.75;
+}
+.theme_wipe--right.theme_wipe--animate {
+    animation: themeWipeRight 650ms ease both;
+}
+
+@keyframes themeWipeRight {
+    0% { transform: translateX(100%); }
+    50% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); opacity: 0; }
 }
