@@ -306,7 +306,7 @@ export const education = [
     degree: "Higher Secondary Certificate (HSC)",
     field: "Science Stream",
     institution: "Nillgiri Public School, Noida",
-    duration: "2014 - 2016",
+    duration: "2018 - 2020",
     location: "Noida, India",
     cgpa: "7/10",
     description: "Completed higher secondary education with focus on Mathematics, Physics, and Chemistry. Developed strong analytical and problem-solving skills.",
