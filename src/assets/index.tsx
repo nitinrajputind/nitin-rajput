@@ -1,5 +1,5 @@
 import aboutImage from "./image/About.png";
-import inspironLabs from "./icons/inspironlabs.jpeg";
+import inspironLabs from "./icons/inspironlabs.png";
 import blogImage from "./image/Blog.png";
 import blogNodeImage from "./image/BlogNode.png";
 import calculatorImage from "./image/Calculator.png";
