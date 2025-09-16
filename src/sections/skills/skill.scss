@@ -197,7 +197,7 @@
         transition: all var(--transition-normal);
         backdrop-filter: blur(10px);
         position: relative;
-        overflow: hidden;
+        overflow: visible;
 
         &::before {
             content: '';
@@ -299,29 +299,6 @@
                 line-height: 1.2;
             }
 
-            &_tooltip {
-                position: absolute;
-                top: -60px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: var(--navy);
-                border: 1px solid var(--theme-color);
-                border-radius: var(--border-radius-md);
-                padding: var(--spacing-sm);
-                z-index: 100;
-                white-space: nowrap;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    border: 5px solid transparent;
-                    border-top-color: var(--theme-color);
-                }
-            }
         }
     }
 

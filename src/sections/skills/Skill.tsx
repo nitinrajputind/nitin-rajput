@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FiCode, FiDatabase, FiTool, FiHeart, FiStar, FiTrendingUp } from "react-icons/fi";
 import SvgIcon from "@/components/svg/SvgIcon";
+import Tooltip from "@/components/common/Tooltip";
 import "./skill.scss";
 import { technoolgy } from "@/constants/constants";
 
@@ -24,7 +25,6 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('cards');
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,6 +70,20 @@ export default function Skills() {
     if (name.includes('soft')) return FiHeart;
     return FiCode;
   };
+
+  const ProficiencyTooltip = ({ skill }: { skill: SkillItem }) => (
+    <div className="skills_tooltip_proficiency">
+      <span>Proficiency: {skill.proficiency || 80}%</span>
+      <div className="skills_tooltip_bar">
+        <motion.div
+          className="skills_tooltip_bar_fill"
+          initial={{ width: 0 }}
+          animate={{ width: `${skill.proficiency || 80}%` }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+      </div>
+    </div>
+  );
 
 
 
@@ -188,46 +202,28 @@ export default function Skills() {
                     </div>
                     <div className="skills_card_items">
                       {category.skill.map((skill, index) => (
-                        <motion.div
+                        <Tooltip
                           key={skill.name}
-                          className="skills_card_item"
-                          variants={skillVariants}
-                          whileHover={{ scale: 1.1, zIndex: 10 }}
-                          onHoverStart={() => setHoveredSkill(skill.name)}
-                          onHoverEnd={() => setHoveredSkill(null)}
+                          content={<ProficiencyTooltip skill={skill} />}
+                          position="top"
+                          delay={200}
                         >
-                          <div className="skills_card_item_icon">
-                            <SvgIcon
-                              name={skill.icon}
-                              width={32}
-                              height={32}
-                              className="skills_icon"
-                            />
-                          </div>
-                          <span className="skills_card_item_name">{skill.name}</span>
-                          <AnimatePresence>
-                            {hoveredSkill === skill.name && (
-                              <motion.div
-                                className="skills_card_item_tooltip"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 10 }}
-                              >
-                                <div className="skills_tooltip_proficiency">
-                                  <span>Proficiency: {skill.proficiency || 80}%</span>
-                                   <div className="skills_tooltip_bar">
-                                     <motion.div
-                                       className="skills_tooltip_bar_fill"
-                                       initial={{ width: 0 }}
-                                       animate={{ width: `${skill.proficiency || 80}%` }}
-                                       transition={{ duration: 0.5, ease: "easeOut" }}
-                                     />
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </motion.div>
+                          <motion.div
+                            className="skills_card_item"
+                            variants={skillVariants}
+                            whileHover={{ scale: 1.1, zIndex: 10 }}
+                          >
+                            <div className="skills_card_item_icon">
+                              <SvgIcon
+                                name={skill.icon}
+                                width={32}
+                                height={32}
+                                className="skills_icon"
+                              />
+                            </div>
+                            <span className="skills_card_item_name">{skill.name}</span>
+                          </motion.div>
+                        </Tooltip>
                       ))}
                     </div>
                   </motion.div>
@@ -239,43 +235,47 @@ export default function Skills() {
               <div className="skills_grid_modern">
                 {filteredCategories.flatMap(category =>
                   category.skill.map((skill) => (
-                    <motion.div
+                    <Tooltip
                       key={skill.name}
-                      className="skills_grid_item"
-                      variants={skillVariants}
-                      whileHover={{ 
-                        scale: 1.05,
-                        rotateY: 10,
-                        boxShadow: "0 15px 30px rgba(var(--theme-color-rgb), 0.3)"
-                      }}
-                      onHoverStart={() => setHoveredSkill(skill.name)}
-                      onHoverEnd={() => setHoveredSkill(null)}
+                      content={<ProficiencyTooltip skill={skill} />}
+                      position="top"
+                      delay={200}
                     >
-                      <div className="skills_grid_item_content">
-                        <div className="skills_grid_item_icon">
-                          <SvgIcon
-                            name={skill.icon}
-                            width={40}
-                            height={40}
-                            className="skills_icon"
-                          />
+                      <motion.div
+                        className="skills_grid_item"
+                        variants={skillVariants}
+                        whileHover={{ 
+                          scale: 1.05,
+                          rotateY: 10,
+                          boxShadow: "0 15px 30px rgba(var(--theme-color-rgb), 0.3)"
+                        }}
+                      >
+                        <div className="skills_grid_item_content">
+                          <div className="skills_grid_item_icon">
+                            <SvgIcon
+                              name={skill.icon}
+                              width={40}
+                              height={40}
+                              className="skills_icon"
+                            />
+                          </div>
+                          <h4 className="skills_grid_item_name">{skill.name}</h4>
+                          <div className="skills_grid_item_proficiency">
+                            <div className="skills_proficiency_bar">
+                               <motion.div
+                                 className="skills_proficiency_fill"
+                                 initial={{ width: 0 }}
+                                 animate={{ width: `${skill.proficiency || 80}%` }}
+                                 transition={{ duration: 1, delay: 0.2 }}
+                               />
+                             </div>
+                             <span className="skills_proficiency_text">
+                               {skill.proficiency || 80}%
+                             </span>
+                          </div>
                         </div>
-                        <h4 className="skills_grid_item_name">{skill.name}</h4>
-                        <div className="skills_grid_item_proficiency">
-                          <div className="skills_proficiency_bar">
-                             <motion.div
-                               className="skills_proficiency_fill"
-                               initial={{ width: 0 }}
-                               animate={{ width: `${skill.proficiency || 80}%` }}
-                               transition={{ duration: 1, delay: 0.2 }}
-                             />
-                           </div>
-                           <span className="skills_proficiency_text">
-                             {skill.proficiency || 80}%
-                           </span>
-                        </div>
-                      </div>
-                    </motion.div>
+                      </motion.div>
+                    </Tooltip>
                   ))
                 )}
               </div>
