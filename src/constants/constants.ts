@@ -250,7 +250,7 @@ export const experience = [
   },
   {
     role: "Software Engineer Trainee",
-    company: "Tech Solutions Inc.",
+    company: "PrepBytes",
     duration: "January 2023 - November 2023",
     description:
       "Developed and maintained full-stack web applications using React, Node.js, and MongoDB. Implemented responsive designs and optimized application performance.",
