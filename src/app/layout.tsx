@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Raleway, Fira_Code } from "next/font/google";
 import "../scss/index.scss";
+import { ThemeProvider } from "@/components/common/ThemeProvider";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -87,7 +88,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" sizes="any" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

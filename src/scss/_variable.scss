@@ -1,17 +1,22 @@
-:root {
+:root,
+[data-theme="dark"] {
     // Color palette
     --navy-shadow: rgba(2, 12, 27, 0.7);
-    --background-color: #0a192f;
-    --lightest-navy: #233554;
-    --light-navy: #112240;
-    --dark-slate: #495670;
-    --slate: #8892b0;
-    --light-slate: #ccd6f6;
-    --lightest-slate: #a8b2d1;
-    --theme-color: #9d00ff;
-    --theme-color-rgb: 157, 0, 255;
+    --background-color: #0b1220;
+    --lightest-navy: #1b2747;
+    --light-navy: #14213a;
+    --dark-slate: #e6edf3;   /* headings */
+    --slate: #c9d1d9;        /* primary text */
+    --light-slate: #9aa7b2;  /* muted */
+    --lightest-slate: #a6b3bf;/* labels */
+    --theme-color: #7c3aed;
+    --theme-color-rgb: 124, 58, 237;
     --white: #ffffff;
     --black: #000000;
+    /* Navbar */
+    --navbar-bg: rgba(11, 18, 32, 0.82);
+    --navbar-bg-scrolled: rgba(11, 18, 32, 0.92);
+    --navbar-border: #1b2747;
     
     // Typography
     --tsm: 12px;
@@ -71,4 +76,26 @@
         --tx2large: 24px;
         --tgiant: clamp(2.5rem, 8vw, 3.5rem);
     }
+}
+
+[data-theme="light"] {
+    /* Base */
+    --background-color: #ffffff; /* pure white for max contrast */
+    --lightest-navy: #e6eaf0;   /* card borders/surfaces */
+    --light-navy: #f2f6fb;      /* card backgrounds */
+    --dark-slate: #2d3748;      /* headings */
+    --slate: #374151;           /* primary text */
+    --light-slate: #111827;     /* strongest text */
+    --lightest-slate: #1f2937;  /* menu text */
+    --white: #000000;           /* inverted */
+    --black: #ffffff;
+
+    /* Accent keeps same brand color but looks sharper on light */
+    --theme-color: #7a00cc;
+    --theme-color-rgb: 122, 0, 204;
+
+    /* Navbar */
+    --navbar-bg: rgba(255, 255, 255, 0.78);
+    --navbar-bg-scrolled: rgba(255, 255, 255, 0.95);
+    --navbar-border: rgba(31, 41, 55, 0.15);
 }
