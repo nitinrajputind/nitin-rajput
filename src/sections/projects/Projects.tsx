@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useRef, useState, useEffect } from "react";
 import { FiGithub, FiExternalLink, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import Tooltip from "@/components/common/Tooltip";
 import "./projects.scss";
 import { projectsData } from "@/constants/constants";
 
@@ -285,9 +286,15 @@ function Projects() {
                               <ul className="project_info_links">
                                 <li className="project_info_links_item">
                                   {isPrivate ? (
-                                    <div className="project_info_links_link project_info_links_link--disabled project_info_links_link--tooltip">
-                                      <FiGithub />
-                                    </div>
+                                    <Tooltip
+                                      content="Client project for security reason we can't show you source code"
+                                      position="top"
+                                      delay={200}
+                                    >
+                                      <div className="project_info_links_link project_info_links_link--disabled">
+                                        <FiGithub />
+                                      </div>
+                                    </Tooltip>
                                   ) : (
                                     <Link
                                       href={projectExternalLinks.github}
@@ -328,11 +335,17 @@ function Projects() {
                           </ul>
                           <ul className="project_info_links">
                             <li className="project_info_links_item">
-                              {isPrivate ? (
-                                <div className="project_info_links_link project_info_links_link--disabled project_info_links_link--tooltip">
+                            {isPrivate ? (
+                              <Tooltip
+                                content="Client project for security reason we can't show you source code"
+                                position="top"
+                                delay={200}
+                              >
+                                <div className="project_info_links_link project_info_links_link--disabled">
                                   <FiGithub />
                                 </div>
-                              ) : (
+                              </Tooltip>
+                            ) : (
                                 <Link
                                   href={projectExternalLinks.github}
                                   className="project_info_links_link"

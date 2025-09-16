@@ -87,7 +87,7 @@
         align-items: center;
         min-height: 300px;
         max-width: 100%;
-        overflow: hidden;
+        overflow: visible;
         box-sizing: border-box;
 
         &--left {
@@ -467,95 +467,49 @@
                         }
                     }
 
-                    &--tooltip {
-                        position: relative;
-
-                        &::before {
-                            content: "Client project for security reason we can't show you source code";
-                            position: absolute;
-                            bottom: 100%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            margin-bottom: 15px;
-                            background-color: #1a1a2e;
-                            color: #ffffff;
-                            padding: 16px 20px;
-                            border-radius: var(--border-radius-md);
-                            font-size: var(--tsm);
-                            font-family: var(--fira-code);
-                            white-space: nowrap;
-                            min-width: 300px;
-                            max-width: 350px;
-                            white-space: normal;
-                            text-align: center;
-                            border: 2px solid var(--theme-color);
-                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-                            line-height: 1.5;
-                            opacity: 0;
-                            visibility: hidden;
-                            transition: all 0.3s ease-in-out;
-                            z-index: 1000;
-                            pointer-events: none;
-                            font-weight: 600;
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            bottom: 100%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            margin-bottom: 9px;
-                            width: 0;
-                            height: 0;
-                            border-left: 8px solid transparent;
-                            border-right: 8px solid transparent;
-                            border-top: 8px solid var(--theme-color);
-                            opacity: 0;
-                            visibility: hidden;
-                            transition: all 0.3s ease-in-out;
-                            z-index: 1000;
-                            pointer-events: none;
-                        }
-
-                        &:hover::before,
-                        &:hover::after {
-                            opacity: 1;
-                            visibility: visible;
-                            }
+                    &--disabled {
+                        cursor: help;
+                        opacity: 0.6;
+                        
+                        &:hover {
+                            opacity: 0.8;
                         }
                     }
                 }
             }
+        }
+    }
 
-        // Desktop and Tablet: Show content by default
-        @media screen and (min-width: 769px) {
-            .project_info_header {
-                cursor: default;
-                padding: 0;
-                margin-bottom: 0;
 
-                &:hover {
-                    background-color: transparent;
-                }
-            }
+    // Desktop and Tablet: Show content by default
+    @media screen and (min-width: 769px) {
+        .project_info_header {
+            cursor: default;
+            padding: 0;
+            margin-bottom: 0;
 
-            .project_info_toggle {
-                display: none;
-            }
-
-            .project_info_body {
-                display: block !important;
-                height: auto !important;
-                opacity: 1 !important;
-                overflow: visible;
-                border-top: none;
-                padding-top: 0;
+            &:hover {
+                background-color: transparent;
             }
         }
 
-        // Mobile: Clean card design
-        @media screen and (max-width: 768px) {
+        .project_info_toggle {
+            display: none;
+        }
+
+        .project_info_body {
+            display: block !important;
+            height: auto !important;
+            opacity: 1 !important;
+            overflow: visible;
+            border-top: none;
+            padding-top: 0;
+        }
+    }
+
+    // Mobile: Clean card design
+    @media screen and (max-width: 768px) {
+        .project {
             display: block;
             background: rgba(var(--light-navy), 0.9);
             border: 1px solid rgba(var(--theme-color-rgb), 0.2);
@@ -867,29 +821,14 @@
                             }
                         }
 
-                        &--tooltip {
-                            &::before {
-                                min-width: 280px;
-                                max-width: 320px;
-                                font-size: var(--tsm2);
-                                padding: 14px 18px;
-                                margin-bottom: 12px;
-                                background-color: #1a1a2e;
-                                color: #ffffff;
-                                font-weight: 600;
-                                left: 50%;
-                                transform: translateX(-50%);
+                        &--disabled {
+                            cursor: help;
+                            opacity: 0.6;
+                            
+                            &:hover {
+                                opacity: 0.8;
                             }
-
-                            &::after {
-                                margin-bottom: 6px;
-                                border-left: 6px solid transparent;
-                                border-right: 6px solid transparent;
-                                border-top: 6px solid var(--theme-color);
-                                left: 50%;
-                                transform: translateX(-50%);
-                            }
-                    }
+                        }
                 }
             }
         }
@@ -1067,11 +1006,11 @@
     }
 
     @media screen and (max-width: 768px) {
-        &_header {
+        .project_info_header {
             margin-bottom: var(--spacing-2xl);
         }
 
-        &_title {
+        .project_info_title {
             font-size: var(--txlarge);
         }
     }
