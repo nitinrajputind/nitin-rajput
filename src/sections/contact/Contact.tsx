@@ -140,6 +140,7 @@ function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('useFormspree', process.env.NEXT_PUBLIC_USE_FORMSPREE);
     if (!validateForm()) {
       return;
     }
@@ -149,12 +150,11 @@ function Contact() {
 
     try {
       // Check if we should use Formspree (for GitHub Pages) or Nodemailer (for Vercel/local)
-      const useFormspree = process.env.NEXT_PUBLIC_USE_FORMSPREE === 'true';
+      const useFormspree = process.env.NEXT_PUBLIC_USE_FORMSPREE == 'true';
       const formspreeEndpoint = `https://formspree.io/f/xpwjgkzo`;
 
       let response;
       let result;
-
       if (useFormspree) {
         // Use Formspree for GitHub Pages deployment
         console.log('Using Formspree for form submission');
