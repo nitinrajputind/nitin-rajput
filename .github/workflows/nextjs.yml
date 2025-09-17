@@ -27,12 +27,6 @@ concurrency:
 jobs:
   # Build job
   build:
-  env:
-      NEXT_PUBLIC_USE_FORMSPREE: ${{ secrets.NEXT_PUBLIC_USE_FORMSPREE }}
-      SMTP_HOST: ${{ secrets.SMTP_HOST }}
-      SMTP_PORT: ${{ secrets.SMTP_PORT }}
-      SMTP_USER: ${{ secrets.SMTP_USER }}
-      SMTP_PASS: ${{ secrets.SMTP_PASS }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -81,6 +75,8 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          NEXT_PUBLIC_USE_FORMSPREE: true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
