@@ -148,18 +148,56 @@ function Contact() {
     setSubmitMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Check if we should use Formspree (for GitHub Pages) or Nodemailer (for Vercel/local)
+      const useFormspree = process.env.NEXT_PUBLIC_USE_FORMSPREE === 'true';
+      const formspreeEndpoint = `https://formspree.io/f/xpwjgkzo`;
 
-      const result = await response.json();
+      let response;
+      let result;
 
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message');
+      if (useFormspree) {
+        // Use Formspree for GitHub Pages deployment
+        console.log('Using Formspree for form submission');
+        response = await fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            _replyto: formData.email,
+            _subject: `Portfolio Contact: ${formData.subject}`,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to send message via Formspree');
+        }
+
+        // Formspree returns different response format
+        result = { 
+          success: true, 
+          message: 'Thank you! Your message has been sent successfully via Formspree. I\'ll get back to you soon!' 
+        };
+      } else {
+        // Use Nodemailer API for Vercel/local development
+        console.log('Using Nodemailer API for form submission');
+        response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send message via Nodemailer');
+        }
       }
 
       setSubmissionStatus('success');
@@ -181,11 +219,20 @@ function Contact() {
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmissionStatus('error');
-      setSubmitMessage(
-        error instanceof Error 
-          ? error.message 
-          : 'Sorry, there was an error sending your message. Please try again.'
-      );
+      
+      // Provide helpful error messages based on the service used
+      const useFormspree = process.env.NEXT_PUBLIC_USE_FORMSPREE === 'true';
+      let errorMessage = 'Sorry, there was an error sending your message. Please try again.';
+      
+      if (error instanceof Error) {
+        if (useFormspree) {
+          errorMessage = `Formspree error: ${error.message}. You can also email me directly at nitinrajput971625@gmail.com`;
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
+      setSubmitMessage(errorMessage);
       
       setTimeout(() => {
         setSubmissionStatus('idle');
