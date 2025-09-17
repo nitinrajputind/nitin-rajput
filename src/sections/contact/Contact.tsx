@@ -148,18 +148,22 @@ function Contact() {
     setSubmitMessage('');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Log form data to console as requested
-      console.log("Form submitted successfully:", {
-        ...formData,
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
       setSubmissionStatus('success');
-      setSubmitMessage('Thank you! Your message has been sent successfully.');
+      setSubmitMessage(result.message || 'Thank you! Your message has been sent successfully.');
       
       // Reset form after successful submission
       setTimeout(() => {
@@ -172,17 +176,21 @@ function Contact() {
         setTouched({});
         setSubmissionStatus('idle');
         setSubmitMessage('');
-      }, 3000);
+      }, 4000);
 
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmissionStatus('error');
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again.');
+      setSubmitMessage(
+        error instanceof Error 
+          ? error.message 
+          : 'Sorry, there was an error sending your message. Please try again.'
+      );
       
       setTimeout(() => {
         setSubmissionStatus('idle');
         setSubmitMessage('');
-      }, 5000);
+      }, 6000);
     }
   };
 
