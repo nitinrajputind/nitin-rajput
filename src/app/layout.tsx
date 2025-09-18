@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Raleway, Fira_Code } from "next/font/google";
 import "../scss/index.scss";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
+import StarField from "@/components/common/StarField";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -104,7 +105,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.svg" />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <StarField density={80} maxSize={2.5} />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

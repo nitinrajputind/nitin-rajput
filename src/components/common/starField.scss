@@ -1,0 +1,493 @@
+// =============================================================================
+// ✨ ANIMATED STARFIELD BACKGROUND
+// =============================================================================
+
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+
+  &__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity var(--transition-normal);
+    
+    // Scroll performance optimizations
+    will-change: opacity;
+    transform: translateZ(0); // Force hardware acceleration
+    backface-visibility: hidden;
+    contain: layout style paint; // CSS containment for better performance
+    
+    // Enhanced theme-aware styling with scroll optimizations
+    [data-theme="light"] & {
+      opacity: 0.7; // Reduced from 0.85 for better scroll performance
+      filter: contrast(1.2) brightness(0.95) saturate(1.1); // Reduced complexity
+      mix-blend-mode: multiply;
+    }
+    
+    [data-theme="dark"] & {
+      opacity: 0.8; // Reduced from 0.9 for better scroll performance
+      filter: contrast(1.05) brightness(1.05) saturate(1.05); // Reduced complexity
+      mix-blend-mode: screen;
+    }
+  }
+
+  &__gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.6; // Reduced for scroll performance
+    transition: opacity var(--transition-normal);
+    
+    // Scroll performance optimizations
+    will-change: opacity;
+    transform: translateZ(0);
+    contain: layout style paint;
+    
+    // Simplified gradients for better scroll performance
+    [data-theme="light"] & {
+      opacity: 0.4; // Further reduced
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(99, 102, 241, 0.05) 0%,
+        rgba(168, 85, 247, 0.03) 50%,
+        transparent 100%
+      ) !important;
+      filter: none; // Remove blur for better performance
+    }
+    
+    [data-theme="dark"] & {
+      opacity: 0.3; // Reduced
+      filter: none; // Remove filters during scroll
+    }
+  }
+
+  &__shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    
+    // Scroll performance optimizations
+    will-change: transform, opacity;
+    contain: layout style paint;
+    transform: translateZ(0);
+
+    // Dark theme shooting stars container
+    &--dark {
+      display: block;
+      
+      [data-theme="light"] & {
+        display: none;
+      }
+    }
+
+    // Light theme shooting stars container
+    &--light {
+      display: none;
+      
+      [data-theme="light"] & {
+        display: block;
+      }
+    }
+  }
+
+  // Dark theme meteors - Classic shooting stars
+  &__shooting-star--meteor {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(
+      circle,
+      rgba(196, 181, 253, 1) 0%,
+      rgba(147, 197, 253, 0.8) 50%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    box-shadow: 
+      0 0 8px rgba(196, 181, 253, 0.8),
+      0 0 16px rgba(147, 197, 253, 0.6),
+      0 0 24px rgba(251, 146, 190, 0.4);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -80px;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(
+        90deg, 
+        transparent,
+        rgba(196, 181, 253, 0.9) 20%,
+        rgba(147, 197, 253, 0.7) 60%,
+        rgba(251, 146, 190, 0.5) 100%
+      );
+      transform: translateY(-50%) skewX(-45deg);
+      box-shadow: 
+        0 0 10px rgba(196, 181, 253, 0.6),
+        0 0 20px rgba(147, 197, 253, 0.4);
+      border-radius: 2px;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(
+        90deg, 
+        rgba(196, 181, 253, 0.8),
+        rgba(147, 197, 253, 0.6) 40%,
+        rgba(251, 146, 190, 0.4) 70%,
+        transparent
+      );
+      transform: translateY(-50%) skewX(-45deg);
+      box-shadow: 0 0 15px rgba(147, 197, 253, 0.3);
+      border-radius: 1px;
+    }
+  }
+
+  // Light theme sparkles - Rotating sparkle trails
+  &__shooting-star--sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.9) 0%,
+      rgba(168, 85, 247, 0.7) 50%,
+      rgba(59, 130, 246, 0.5) 100%
+    );
+    border-radius: 50%;
+    box-shadow: 
+      0 0 6px rgba(99, 102, 241, 0.8),
+      0 0 12px rgba(168, 85, 247, 0.6),
+      0 0 18px rgba(59, 130, 246, 0.4);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(99, 102, 241, 0.3),
+        transparent,
+        rgba(168, 85, 247, 0.3),
+        transparent
+      );
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      animation: sparkleRotate 1s linear infinite;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -30px;
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(
+        90deg, 
+        transparent,
+        rgba(99, 102, 241, 0.6) 30%,
+        rgba(168, 85, 247, 0.4) 70%,
+        transparent
+      );
+      transform: translateY(-50%) skewX(-30deg);
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+      border-radius: 1px;
+    }
+  }
+
+  // Light theme floating orbs
+  &__floating-orbs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    
+    [data-theme="dark"] & {
+      display: none;
+    }
+  }
+
+  &__floating-orb {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(
+      circle,
+      rgba(245, 158, 11, 0.6) 0%,
+      rgba(99, 102, 241, 0.4) 50%,
+      rgba(168, 85, 247, 0.2) 100%
+    );
+    border-radius: 50%;
+    box-shadow: 
+      0 0 8px rgba(245, 158, 11, 0.5),
+      0 0 16px rgba(99, 102, 241, 0.3),
+      0 0 24px rgba(168, 85, 247, 0.2);
+    filter: blur(0.5px);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(
+        circle,
+        rgba(245, 158, 11, 0.2) 0%,
+        rgba(99, 102, 241, 0.1) 50%,
+        transparent 100%
+      );
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      animation: orbPulse 3s ease-in-out infinite;
+    }
+  }
+
+  // New animations for theme-specific effects
+  @keyframes sparkleRotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes orbPulse {
+    0%, 100% { 
+      transform: translate(-50%, -50%) scale(1); 
+      opacity: 0.2; 
+    }
+    50% { 
+      transform: translate(-50%, -50%) scale(1.5); 
+      opacity: 0.4; 
+    }
+  }
+
+  // Subtle pulse animation for the entire starfield
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(var(--theme-color-rgb), 0.01) 100%
+    );
+    animation: starfieldPulse 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  // Performance optimizations
+  &__canvas,
+  &__gradient,
+  &__shooting-stars {
+    will-change: transform, opacity;
+  }
+
+  // Scroll performance optimizations
+  &.scroll-optimized {
+    &__canvas {
+      opacity: 0.4 !important;
+      filter: none !important;
+    }
+    
+    &__gradient {
+      opacity: 0.2 !important;
+      animation-play-state: paused !important;
+    }
+    
+    &__shooting-star {
+      animation-duration: 6s !important; // Slower animations during scroll
+      opacity: 0.6 !important;
+    }
+    
+    &::before {
+      animation-play-state: paused !important;
+    }
+  }
+
+  // Reduce motion for accessibility
+  @media (prefers-reduced-motion: reduce) {
+    &__shooting-star {
+      animation: none !important;
+    }
+    
+    &__gradient {
+      animation: none !important;
+    }
+    
+    &::before {
+      animation: none !important;
+    }
+    
+    &__canvas {
+      opacity: 0.3 !important;
+    }
+  }
+
+  // Mobile optimizations for scroll performance
+  @media screen and (max-width: 768px) {
+    &__canvas {
+      opacity: 0.4; // Further reduced for mobile scroll performance
+      filter: none !important; // Remove all filters on mobile
+    }
+    
+    &__gradient {
+      opacity: 0.2 !important; // Minimal gradient on mobile
+      animation: none !important; // No gradient animation on mobile
+    }
+    
+    &__shooting-star {
+      &::before,
+      &::after {
+        width: 20px; // Shorter trails on mobile
+        height: 1px;
+      }
+      
+      // Reduce shooting star frequency on mobile
+      &:nth-child(n+3) {
+        display: none; // Hide extra shooting stars on mobile
+      }
+    }
+    
+    // Pause all complex animations on mobile during scroll
+    &.scroll-optimized {
+      &__canvas {
+        opacity: 0.2 !important;
+      }
+      
+      &__shooting-star {
+        animation-play-state: paused !important;
+      }
+    }
+  }
+
+  // High DPI displays
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    &__canvas {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+}
+
+// =============================================================================
+// 🎭 ANIMATIONS
+// =============================================================================
+
+@keyframes starfieldPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+// Enhanced theme-aware star colors
+[data-theme="light"] {
+  .starfield {
+    // Add subtle background tint for better star visibility
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 30% 40%,
+        rgba(99, 102, 241, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(168, 85, 247, 0.02) 0%,
+        transparent 50%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    &__shooting-star {
+      &:nth-child(1) {
+        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.9), transparent);
+        box-shadow: 
+          0 0 6px rgba(99, 102, 241, 0.8),
+          0 0 12px rgba(99, 102, 241, 0.5),
+          0 0 18px rgba(99, 102, 241, 0.3);
+      }
+      
+      &:nth-child(2) {
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
+        box-shadow: 
+          0 0 6px rgba(59, 130, 246, 0.7),
+          0 0 12px rgba(59, 130, 246, 0.4),
+          0 0 18px rgba(59, 130, 246, 0.2);
+      }
+      
+      &:nth-child(3) {
+        background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.8), transparent);
+        box-shadow: 
+          0 0 6px rgba(168, 85, 247, 0.7),
+          0 0 12px rgba(168, 85, 247, 0.4),
+          0 0 18px rgba(168, 85, 247, 0.2);
+      }
+    }
+  }
+}
+
+[data-theme="dark"] {
+  .starfield {
+    &__shooting-star {
+      &:nth-child(1) {
+        background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.9), transparent);
+        box-shadow: 
+          0 0 8px rgba(196, 181, 253, 0.6),
+          0 0 16px rgba(196, 181, 253, 0.4);
+      }
+      
+      &:nth-child(2) {
+        background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.9), transparent);
+        box-shadow: 
+          0 0 8px rgba(147, 197, 253, 0.6),
+          0 0 16px rgba(147, 197, 253, 0.4);
+      }
+      
+      &:nth-child(3) {
+        background: linear-gradient(90deg, transparent, rgba(251, 146, 190, 0.9), transparent);
+        box-shadow: 
+          0 0 8px rgba(251, 146, 190, 0.6),
+          0 0 16px rgba(251, 146, 190, 0.4);
+      }
+    }
+  }
+}
