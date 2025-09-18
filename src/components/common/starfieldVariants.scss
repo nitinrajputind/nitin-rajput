@@ -1,0 +1,263 @@
+// =============================================================================
+// ✨ STARFIELD VARIANTS STYLES
+// =============================================================================
+
+// Common base styles
+%starfield-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+// =============================================================================
+// 🌟 CONSTELLATION FIELD
+// =============================================================================
+.constellation-field {
+  @extend %starfield-base;
+
+  &__svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    transition: opacity var(--transition-normal);
+    
+    [data-theme="light"] & {
+      opacity: 0.4;
+    }
+    
+    [data-theme="dark"] & {
+      opacity: 0.8;
+    }
+  }
+
+  &__constellation {
+    filter: drop-shadow(0 0 3px var(--theme-color));
+    
+    line {
+      stroke-dasharray: 5, 5;
+      animation: constellation-flow 8s linear infinite;
+    }
+    
+    circle {
+      filter: drop-shadow(0 0 5px var(--theme-color));
+    }
+  }
+}
+
+@keyframes constellation-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 20;
+  }
+}
+
+// =============================================================================
+// 💫 FLOATING PARTICLES
+// =============================================================================
+.floating-particles {
+  @extend %starfield-base;
+
+  &__particle {
+    position: absolute;
+    background: var(--theme-color);
+    border-radius: 50%;
+    filter: blur(0.5px);
+    box-shadow: 
+      0 0 6px var(--theme-color),
+      0 0 12px rgba(var(--theme-color-rgb), 0.6);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(var(--theme-color-rgb), 0.3) 0%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
+}
+
+// =============================================================================
+// 🌟 GEOMETRIC STARS
+// =============================================================================
+.geometric-stars {
+  @extend %starfield-base;
+
+  &__shape {
+    position: absolute;
+    border: 1px solid var(--theme-color);
+    background: rgba(var(--theme-color-rgb), 0.1);
+    filter: drop-shadow(0 0 5px rgba(var(--theme-color-rgb), 0.5));
+    
+    &--triangle {
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+    
+    &--diamond {
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+    
+    &--hexagon {
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    }
+  }
+}
+
+// =============================================================================
+// ⭐ PULSING DOTS
+// =============================================================================
+.pulsing-dots {
+  @extend %starfield-base;
+
+  &__dot {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(0.3px);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
+}
+
+// =============================================================================
+// 🌌 AURORA BACKGROUND
+// =============================================================================
+.aurora-background {
+  @extend %starfield-base;
+  
+  &__wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    opacity: 0.7;
+    
+    [data-theme="light"] & {
+      opacity: 0.4;
+    }
+    
+    &--1 {
+      top: 0;
+      height: 30%;
+      transform: skewY(-5deg);
+    }
+    
+    &--2 {
+      top: 35%;
+      height: 40%;
+      transform: skewY(3deg);
+    }
+    
+    &--3 {
+      top: 60%;
+      height: 50%;
+      transform: skewY(-2deg);
+    }
+  }
+}
+
+// =============================================================================
+// 📱 RESPONSIVE OPTIMIZATIONS
+// =============================================================================
+@media screen and (max-width: 768px) {
+  .constellation-field {
+    &__svg {
+      opacity: 0.3;
+    }
+  }
+  
+  .floating-particles {
+    &__particle {
+      filter: blur(1px);
+    }
+  }
+  
+  .geometric-stars {
+    &__shape {
+      border-width: 0.5px;
+    }
+  }
+  
+  .pulsing-dots {
+    &__dot {
+      filter: blur(0.5px);
+    }
+  }
+  
+  .aurora-background {
+    &__wave {
+      opacity: 0.3;
+    }
+  }
+}
+
+// =============================================================================
+// ♿ ACCESSIBILITY
+// =============================================================================
+@media (prefers-reduced-motion: reduce) {
+  .constellation-field,
+  .floating-particles,
+  .geometric-stars,
+  .pulsing-dots,
+  .aurora-background {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    opacity: 0.2 !important;
+  }
+}
+
+// =============================================================================
+// 🎨 THEME VARIATIONS
+// =============================================================================
+[data-theme="light"] {
+  .constellation-field,
+  .floating-particles,
+  .geometric-stars,
+  .pulsing-dots,
+  .aurora-background {
+    opacity: 0.6;
+    filter: brightness(0.8) contrast(1.2);
+  }
+}
+
+[data-theme="dark"] {
+  .constellation-field,
+  .floating-particles,
+  .geometric-stars,
+  .pulsing-dots,
+  .aurora-background {
+    opacity: 0.9;
+    filter: brightness(1.1) contrast(0.9);
+  }
+}

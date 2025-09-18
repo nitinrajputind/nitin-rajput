@@ -72,6 +72,12 @@
     --z-popover: 1060;
     --z-tooltip: 1070;
     
+    // Tooltip theme variables
+    --tooltip-bg: rgba(11, 18, 32, 0.95);
+    --tooltip-text: #ffffff;
+    --tooltip-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(139, 92, 246, 0.3);
+    --tooltip-arrow-shadow: rgba(0, 0, 0, 0.3);
+    
     @media screen and (max-width: 480px) {
         --tx2large: 24px;
         --tgiant: clamp(2.5rem, 8vw, 3.5rem);
@@ -98,4 +104,10 @@
     --navbar-bg: rgba(255, 255, 255, 0.78);
     --navbar-bg-scrolled: rgba(255, 255, 255, 0.95);
     --navbar-border: rgba(31, 41, 55, 0.15);
+    
+    /* Tooltip light theme */
+    --tooltip-bg: rgba(255, 255, 255, 0.95);
+    --tooltip-text: #1f2937;
+    --tooltip-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(124, 58, 237, 0.2);
+    --tooltip-arrow-shadow: rgba(0, 0, 0, 0.1);
 }
